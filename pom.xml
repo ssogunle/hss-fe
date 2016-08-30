@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.inted.as</groupId>
+	<artifactId>hss-fe</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>hss-fe Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${javax.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${apache.commons.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!--dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
+			<version>${slf4j.version}</version> </dependency -->
+
+		<!-- DIAMETER -->
+		<dependency>
+			<groupId>org.mobicents.diameter</groupId>
+			<artifactId>jdiameter-api</artifactId>
+			<version>${mobicents.diameter.jdiameter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mobicents.diameter</groupId>
+			<artifactId>jdiameter-impl</artifactId>
+			<version>${mobicents.diameter.jdiameter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mobicents.diameter</groupId>
+			<artifactId>mobicents-diameter-mux-jar</artifactId>
+			<version>${mobicents.diameter.mux.version}</version>
+		</dependency>
+
+		<!-- XSTREAM -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.8</version>
+		</dependency>
+
+		<!-- ODATA -->
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-client-api</artifactId>
+			<version>${odata.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-client-core</artifactId>
+			<version>${odata.version}</version>
+			<!--scope>compile</scope -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-commons-api</artifactId>
+			<version>${odata.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-commons-core</artifactId>
+			<version>${odata.version}</version>
+		</dependency>
+
+		<!-- JETTY -->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-jmx</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<finalName>hss-fe</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${compiler-plugin-version}</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+				<configuration>
+					<!--Reload interval -->
+					<!--scanIntervalSeconds>60</scanIntervalSeconds -->
+					<!-- webApp> <contextPath>/</contextPath> </webApp -->
+					<jettyXml>jetty.xml,jetty-http.xml</jettyXml>
+				</configuration>
+			</plugin>
+
+			<!--plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>exec-maven-plugin</artifactId> 
+				<version>1.2</version> <executions> <execution> <id>Start-HSS-FE</id> <phase>integration-test</phase> 
+				<goals> <goal>exec</goal> </goals> <configuration> <executable>curl</executable> 
+				<arguments> <argument>${app.url}</argument> </arguments> </configuration> 
+				</execution> </executions> </plugin -->
+		</plugins>
+	</build>
+
+	<properties>
+
+		<!--java version -->
+		<java-version>1.8</java-version>
+
+		<!-- JUnit -->
+		<junit-version>4.12</junit-version>
+
+		<!-- HTTP Servlet -->
+		<javax.version>2.5</javax.version>
+
+		<!-- APACHE COMMONS -->
+		<apache.commons.version>3.4</apache.commons.version>
+		
+		<!-- ODATA -->
+		<odata.version>4.1.0</odata.version>
+
+		<!-- SLF4J LOGGER -->
+		<slf4j.version>1.7.18</slf4j.version>
+
+		<!-- Maven compiler plugin -->
+		<compiler-plugin-version>2.5.1</compiler-plugin-version>
+
+		<!-- DIAMETER -->
+		<mobicents.diameter.jdiameter.version>1.7.0.79</mobicents.diameter.jdiameter.version>
+		<mobicents.diameter.mux.version>1.7.0.74</mobicents.diameter.mux.version>
+
+		<!-- JETTY -->
+		<jetty.version>9.3.9.M0</jetty.version>
+
+		<!-- Web App Url -->
+		<app.url>http://localhost:7878/HSS</app.url>
+
+
+	</properties>
+
+</project>

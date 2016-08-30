@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<Configuration xmlns="http://www.jdiameter.org/jdiameter-server">
+
+	<LocalPeer>
+		<URI value="aaa://192.168.23.4:3868" />
+		<IPAddresses>
+			<IPAddress value="192.168.23.4" />
+		</IPAddresses>
+		<Realm value="open-ims.test" />
+		<VendorID value="10415" />
+		<ProductName value="Inted HSS FrontEnd Service" />
+		<FirmwareRevision value="1" />
+		<OverloadMonitor>
+			<Entry index="1" lowThreshold="0.5" highThreshold="0.6">
+				<ApplicationID>
+					<VendorId value="10415" />
+					<AuthApplId value="16777217" />
+					<AcctApplId value="0" />
+				</ApplicationID>
+			</Entry>
+			<Entry index="2" lowThreshold="0.5" highThreshold="0.6">
+				<ApplicationID>
+					<VendorId value="10415" />
+					<AuthApplId value="16777216" />
+					<AcctApplId value="0" />
+				</ApplicationID>
+			</Entry>
+		</OverloadMonitor>
+	</LocalPeer>
+
+	<Parameters>
+		<AcceptUndefinedPeer value="true" />
+		<DuplicateProtection value="true" />
+		<DuplicateTimer value="240000" />
+		<UseUriAsFqdn value="true" />
+		<!-- Needed for Ericsson Emulator -->
+		<QueueSize value="10000" />
+		<MessageTimeOut value="60000" />
+		<StopTimeOut value="10000" />
+		<CeaTimeOut value="10000" />
+		<IacTimeOut value="30000" />
+		<DwaTimeOut value="10000" />
+		<DpaTimeOut value="5000" />
+		<RecTimeOut value="10000" />
+	</Parameters>
+
+	<Network>
+		<Peers>
+			<Peer name="aaa://127.0.0.1:1812" attempt_connect="false"
+				rating="1" /> <!-- Sh -->
+			<Peer name="aaa://127.0.0.1:1813" attempt_connect="false"
+				rating="1" /> <!-- Cx -->
+
+			<Peer name="icscf.open-ims.test:3869" attempt_connect="false"
+				rating="1"/> <!-- I-CSCF -->
+
+			<Peer name="scscf.open-ims.test:3870" attempt_connect="false"
+				rating="1"/> <!-- S-CSCF -->
+		</Peers>
+		<Realms>
+
+			<!-- CSCFs -->
+			<Realm name="open-ims.test" peers="icscf.open-ims.test,scscf.open-ims.test" local_action="LOCAL"
+				dynamic="false" exp_time="1">
+				<ApplicationID>
+					<VendorId value="10415" />
+					<AuthApplId value="16777216" />
+					<AcctApplId value="0" />
+				</ApplicationID>
+			</Realm>
+
+			<!-- Sh App -->
+			<Realm name="open-ims.test" peers="127.0.0.1" local_action="LOCAL"
+				dynamic="false" exp_time="1">
+				<ApplicationID>
+					<VendorId value="10415" />
+					<AuthApplId value="16777217" />
+					<AcctApplId value="0" />
+				</ApplicationID>
+			</Realm>
+			<!-- Cx App -->
+			<Realm name="open-ims.test" peers="127.0.0.1" local_action="LOCAL"
+				dynamic="false" exp_time="1">
+				<ApplicationID>
+					<VendorId value="10415" />
+					<AuthApplId value="16777216" />
+					<AcctApplId value="0" />
+				</ApplicationID>
+			</Realm>
+		</Realms>
+	</Network>
+
+	<Extensions />
+
+</Configuration>
